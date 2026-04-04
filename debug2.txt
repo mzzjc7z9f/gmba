@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="ja" style="color-scheme:dark;background:#0a0c10">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>debug2</title>
+</head>
+<body style="color:#fff;padding:20px;font-family:monospace">
+<div id="s1">step1: HTML読み込み中...</div>
+<div id="s2"></div>
+<div id="s3"></div>
+<div id="s4"></div>
+<script>
+document.getElementById('s1').textContent = 'step1: OK';
+
+try {
+// 定数定義テスト
+const M = 1000000;
+const OKU = 100 * M;
+document.getElementById(‘s2’).textContent = ‘step2: 定数OK M=’ + M;
+} catch(e) {
+document.getElementById(‘s2’).style.color = ‘red’;
+document.getElementById(‘s2’).textContent = ’step2 ERROR: ’ + e.message;
+}
+
+try {
+// 関数定義テスト
+function testFn(x) { return x * 2; }
+const r = testFn(5);
+document.getElementById(‘s3’).textContent = ‘step3: 関数OK r=’ + r;
+} catch(e) {
+document.getElementById(‘s3’).style.color = ‘red’;
+document.getElementById(‘s3’).textContent = ’step3 ERROR: ’ + e.message;
+}
+
+try {
+// localStorage テスト
+localStorage.setItem(‘npb_test’, ‘1’);
+const v = localStorage.getItem(‘npb_test’);
+document.getElementById(‘s4’).textContent = ‘step4: localStorage OK v=’ + v;
+} catch(e) {
+document.getElementById(‘s4’).style.color = ‘red’;
+document.getElementById(‘s4’).textContent = ’step4 ERROR: ’ + e.message;
+}
+</script>
+
+</body>
+</html>
